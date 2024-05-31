@@ -10,6 +10,7 @@
   </head>
 
   <body>
+
 {% if user.is_authenticated %}
 <header class="p-3 text-bg-primary">
 {% else %}
@@ -17,10 +18,11 @@
 {% endif %}
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-
+        <img src="{% static 'images/logo.png' %}" alt="logo" width="80" height="54">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="{% url 'home' %}" class="nav-link px-2 text-primary text-white">BELLA'S RESTAURANT</a></li>
           <li><a href="{% url 'home' %}" class="nav-link px-2 text-white">FAQ's</a></li>
+        
         </ul>
         <div class="text-end">
         {% if user.is_authenticated %}
@@ -35,6 +37,7 @@
       </div>
     </div>
 </header>
+
     <main>
       {% block content %}
       {% endblock %}

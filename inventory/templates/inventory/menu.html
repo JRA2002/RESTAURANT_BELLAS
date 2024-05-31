@@ -1,60 +1,115 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Django Delights{% endblock %}
+{% block title %}Bella's Restaurant{% endblock %}
 {% block content %}
-
+<div class="container text-center">
   <h1>Menu</h1>
 
   {% if user.is_staff %}
     <div class="add">
       <a class="addbutton" href="{% url 'menu_edit' %}">EDIT</a>
     </div>
-
-    <table class="menu-table">
-      {% for menu_item in object_list|dictsort:'category.id' %}
-        {% ifchanged %}
-          <thead class="heading">
-            <tr>
-              <td><h2>{{ menu_item.category.category }}</h2></td>
-              <td>{% if forloop.counter == 1 %}Profit{% endif %}</td>
-              <td>{% if forloop.counter == 1 %}Price{% endif %}</td>
-              <td>{% if forloop.counter == 1 %}Stock{% endif %}</td>
-            </tr>
-          </thead>
-        {% endifchanged %}
-        {% ifchanged %}<tbody>{% endifchanged %}
-          <tr>
-            <td><a href="{% url 'details' menu_item.title %}">{{ menu_item.title }}</a></td>
-            <td>£{{ menu_item.dish_profit }}</td>
-            <td>£{{ menu_item.price }}</td>
-            <td>{{ menu_item.available }}</td>
-          </tr>
-        {% ifchanged %}</tbody>{% endifchanged %}
-      {% endfor %}
+    <h2 class="text-start">ENTRADAS</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Menu</th>
+          <th scope="col">Ganancia</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in object_list%}
+        {% if item.category.id == 1%}
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          <td>{{item.dish_profit}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.available}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
     </table>
-
-  {% else %}
-    <table class="menu-table">
-      {% for menu_item in object_list|dictsort:'category.id' %}
-        {% ifchanged %}
-          <thead class="heading">
-            <tr>
-              <td><h2>{{ menu_item.category.category }}</h2></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </thead>
-        {% endifchanged %}
-        {% ifchanged %}<tbody>{% endifchanged %}
-          <tr>
-            <td><a href="{% url 'details' menu_item.title %}">{{ menu_item.title }}</a></td>
-            <td>{% if menu_item.available == 0 %}<div class="exclamation">!</div>{% endif %}</td>
-            <td>{% if menu_item.available == 0 %}Stockout{% endif %}</td>
-            <td>{{ menu_item.price }}</td>
-          </tr>
-        {% ifchanged %}</tbody>{% endifchanged %}
-      {% endfor %}
+    <h2 class="text-start">PRINCIPAL</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Menu</th>
+          <th scope="col">Ganancia</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in object_list%}
+        {% if item.category.id == 2%}
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          <td>{{item.dish_profit}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.available}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
     </table>
-  {% endif %}
+    <h2 class="text-start">POSTRES</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Menu</th>
+          <th scope="col">Ganancia</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in object_list%}
+        {% if item.category.id == 3%}
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          <td>{{item.dish_profit}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.available}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    <h2 class="text-start">BEBIDAS</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Menu</th>
+          <th scope="col">Ganancia</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in object_list%}
+        {% if item.category.id == 4%}
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          <td>{{item.dish_profit}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.available}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+</div>
+ 
 {% endblock %}

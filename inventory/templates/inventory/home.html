@@ -3,18 +3,30 @@
 {% block title %}Django Delights{% endblock %}
 
 {% block content %}
-  <div class="container home">
-    <div class="plate-posn">
-      <h1 class="plate">Django Delights</h1>
-    </div>
-    {% if user.username %}
-      <h2 class="greet">Welcome {{ user.username }}</h2>
-    {% endif %}
+  <div class="container">
+
+   
     <div class="button-posn">
       {% if user.is_staff %}
-        <button class="button"><a href="{% url 'menu' %}"><h2 class="button-text">Menu management</h2></a></button>
-        <button class="button"><a href="{% url 'stock' %}"><h2 class="button-text">Stock management</h2></a></button>
-        <button class="button"><a href="{% url 'sales_profit' %}"><h2 class="button-text">Sales and profit</h2></a></button>
+      
+        
+        <div class="d-grid gap-2 col-6 mx-auto text-center p-5">
+          {% if user.username %}
+          <h2 class="text-center">WELCOME  {{ user.username|upper }}</h2>
+        {% endif %}
+                   <a href="{% url 'menu' %}" class="btn btn-outline-primary" style="
+                   --bs-btn-padding-y: 1.5rem; 
+                   --bs-btn-padding-x: 3.5rem; 
+                   --bs-btn-font-size: 2rem;">MENU</a>
+                  <a href="{% url 'stock' %}" class="btn btn-outline-primary" style="
+                  --bs-btn-padding-y: 1.5rem; 
+                  --bs-btn-padding-x: 3.5rem; 
+                  --bs-btn-font-size: 2rem;">STOCK</a>
+                  <a href="{% url 'sales_profit' %}" class="btn btn-outline-primary" style="
+                  --bs-btn-padding-y: 1.5rem; 
+                  --bs-btn-padding-x: 3.5rem; 
+                  --bs-btn-font-size: 2rem;">REPORTE DE VENTAS</a>
+        </div>
       {% else %}
         <button class="button"><a href="{% url 'menu' %}"><h2 class="button-text">Menu</h2></a></button>
         <button class="button"><a href="{% url 'table_order' %}"><h2 class="button-text">Orders</h2></a></button>

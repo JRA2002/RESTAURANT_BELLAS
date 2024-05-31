@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-  <h1>Recipes</h1>
+  <div class="container col-md-4">
+    <h1>Recetas</h1>
 
   <form method="post">
     {% csrf_token %}
+  
     <div class="add">
-      <p>All recipes</p>
+  
       <input class="addbutton" type="submit" value="Update" />
     </div>
 
@@ -40,4 +43,5 @@
       {% endfor %}
     </table>
   </form>
+  </div>
 {% endblock %}
