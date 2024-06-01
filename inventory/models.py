@@ -96,6 +96,7 @@ class MenuItem(models.Model):
     description = models.TextField(blank=True, null=True)
     # whether the dish is stocked or not
     stock_item = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='menu/', default='menu/image.jpeg')
 
     # Returns how many of the menu_item can be made from stock
     def available(self):

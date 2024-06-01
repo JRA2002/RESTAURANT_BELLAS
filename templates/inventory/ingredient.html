@@ -2,15 +2,14 @@
 {% load static %}
 {% block title %}Django Delights{% endblock %}
 {% block content %}
-<div>
-  <h2>Ingredients</h2>
-  <table>
+<div class="d-grid gap-2 col-md-4 mx-auto">
+  <h2 class="mt-3">TABLA DE INGREDIENTES</h2>
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Item</th>
-        <th>Quantity</th>
-        <th>Unit of measure</th>
-        <th>Remove</th>
+        <th>Cantidad</th>
+        <th>Unidad</th>
       </tr>
     </thead>
     <tbody>
@@ -24,12 +23,12 @@
               {{ item.unit}}
             </td>
             <td>
-              <a class="delete-button" href="{% url 'delete_ingredients' item.name %}">❌</a>
+              <a class="btn btn-danger " href="{% url 'delete_ingredients' item.name %}">ELIMINAR</a>
             </td>
           </tr>
       {% endfor %}
     </tbody>
   </table>
-  <a class="add-button" href="{% url 'create_ingredients' %}">➕</a>
+  <a class="btn btn-success" href="{% url 'create_ingredients' %}">AGREGAR</a>
 </div>
 {% endblock %}

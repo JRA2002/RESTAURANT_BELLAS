@@ -3,13 +3,14 @@
 {% block title %}Django Delights{% endblock %}
 {% block content %}
 
-<h1>Best Sellers</h1>
-<a href="{% url 'menu_edit' %}">All recipes</a>
+<div class="d-grid gap-2 col-md-4 mx-auto">
+  <h3>PLATOS MAS VENDIDOS</h3>
+<a href="{% url 'menu_edit' %}">Recetas</a>
 <table>
   <thead>
     <tr>
-      <th>Dish</th>
-      <th>Qty sold</th>
+      <th>Item</th>
+      <th>Vendido</th>
     </tr>
   </thead>
   <tbody>
@@ -21,5 +22,6 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
 {% endblock %}

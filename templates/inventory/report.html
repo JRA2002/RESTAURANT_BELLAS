@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Django Delights{% endblock %}
+{% block content %}
+<div class="d-grid gap-2 col-md-4 mx-auto">
+  <h2 class="mt-3">REPORTES</h2>
+  <a href="{% url 'menu_edit' %}">Recetas</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Descripcion</th>
+        <th>Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ganancia de todas las ordenes</td>
+        <td>£ {{ object_list }}</td>
+      </tr>
+      <tr>
+        <td>Costo de las ordenes</td>
+        <td>£ {{ orders }}</td>
+      </tr>
+      <tr>
+        <td>GANANCIA</td>
+        <td>£ {{ profit }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-success" href="{% url 'profit_pdf' %}"><i class="bi bi-filetype-pdf"></i>GENERAR PDF</a>
+  <a class="btn btn-outline-primary"><i class="bi bi-filetype-pdf"></i></a>
+</div>
+{% endblock %}

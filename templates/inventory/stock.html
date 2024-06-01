@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Django Delights{% endblock %}
+
+{% block content %}
+  <div class="d-grid gap-2 col-md-4 mx-auto">
+    <h1 class="text-center mt-3">Stock Management</h1>
+
+  <a class="btn btn-outline-primary" href="{% url 'current_stock' %}">STOCK ACTUAL</a>
+  <a class= "btn btn-outline-dark" href="{% url 'stocked_recipes' %}">RECETAS</a>
+  <a class="btn btn-outline-dark" href="{% url 'shopping_list' %}">GENERAR LISTA DE COMPRA</a>
+  <a class="btn btn-outline-dark" href="{% url 'ingredients' %}">INGREDIENTES</a>
+  <a class="btn btn-outline-dark" href="{% url 'orphans' %}">INGREDIENTES NO USADOS</a>
+  </div>
+{% endblock %}

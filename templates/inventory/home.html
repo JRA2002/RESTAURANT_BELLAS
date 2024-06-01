@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Django Delights{% endblock %}
+{% load i18n %}
+
 
 {% block content %}
   <div class="container">
@@ -17,19 +18,27 @@
                    <a href="{% url 'menu' %}" class="btn btn-outline-primary" style="
                    --bs-btn-padding-y: 1.5rem; 
                    --bs-btn-padding-x: 3.5rem; 
-                   --bs-btn-font-size: 2rem;">MENU</a>
+                   --bs-btn-font-size: 2rem;">MENU MANAGEMENT</a>
                   <a href="{% url 'stock' %}" class="btn btn-outline-primary" style="
                   --bs-btn-padding-y: 1.5rem; 
                   --bs-btn-padding-x: 3.5rem; 
-                  --bs-btn-font-size: 2rem;">STOCK</a>
+                  --bs-btn-font-size: 2rem;">STOCK MANAGEMENT</a>
                   <a href="{% url 'sales_profit' %}" class="btn btn-outline-primary" style="
                   --bs-btn-padding-y: 1.5rem; 
                   --bs-btn-padding-x: 3.5rem; 
                   --bs-btn-font-size: 2rem;">REPORTE DE VENTAS</a>
+                  <a href="{% url 'sales_profit' %}" class="btn btn-outline-primary" style="
+                  --bs-btn-padding-y: 1.5rem; 
+                  --bs-btn-padding-x: 3.5rem; 
+                  --bs-btn-font-size: 2rem;">VENTAS</a>
         </div>
       {% else %}
-        <button class="button"><a href="{% url 'menu' %}"><h2 class="button-text">Menu</h2></a></button>
-        <button class="button"><a href="{% url 'table_order' %}"><h2 class="button-text">Orders</h2></a></button>
+      <div class="d-grid gap-2 col-md-4 mx-auto">
+        <h2 class="text-center mt-3">WELCOME  {{ user.username|upper }}</h2>
+        
+        <a class="btn btn-outline-primary" href="{% url 'menu' %}"><h1>MENU</h1></a>
+        <a class="btn btn-outline-primary" href="{% url 'table_order' %}"><h1>PEDIDOS</h1></a>
+      </div>
       {% endif %}
     </div>
   </div>

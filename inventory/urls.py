@@ -42,4 +42,5 @@ urlpatterns = [
     path('stock/ingredients/orphans/', views.OrphanIngredientView.as_view(), name='orphans'),
     path('stock/orders', views.OrderView.as_view(), name='orders'),
     path('stock/orders/add/', views.CreateOrderView.as_view(), name='create_order'),
+    path('profit_pdf/', views.Profit_pdf, name='profit_pdf'),
 ]

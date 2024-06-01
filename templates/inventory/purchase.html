@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="d-grid gap-2 col-md-4 mx-auto mt-3">
+    <h2>DETALLES DE MESA N°{{ table_order.table_num }}</h2>
+    
+    <p>Fecha: {{ table_order.timestamp }}</p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in object_list %}
+          <tr>
+            <td>{{ item.menu_item_name }}</td>
+            <td><a class="btn btn-outline-primary" href="{% url 'update_purchases' table_order.id item.id %}">{{ item.quantity }}</a></td>
+            <td><a class="btn btn-outline-danger" href="{% url 'delete_purchases' table_order.id item.id %}">X</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a class="btn btn-success" href="{% url 'create_purchases' table_order.id %}">Agregar a la mesa</a>
+    <a class="btn btn-outline-dark" href="{% url 'table_order' %}">Regresar</a>
+
+  </div>
+{% endblock %}

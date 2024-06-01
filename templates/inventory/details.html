@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Django Delights{% endblock %}
 {% block content %}
 
 <div class="col-md-6 container text-center ">
   <h4 class="mt-3">{{menu_item.title}}</h4>
   <div class="card mt-3">
-    <img src="https://imgmedia.buenazo.pe/652x359/buenazo/original/2020/09/25/5f6eaf8e2810e95b5c5da50c.webp" class="card-img-top img-fluid" alt="green iguana" />
+    <img class="img thumbnail" src="{{menu_item.image.url}}" class="card-img-top img-fluid" alt="imagen " />
     <div class="card-body">
       
       <h4 class="detail">Ingredients</h4>

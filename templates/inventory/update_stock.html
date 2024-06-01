@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <h1>Recipes</h1>
+  
 
+<div class="container col-md-4">
+  <h1>Recipes</h1>
   <form method="post">
     {% csrf_token %}
     <div class="add">
@@ -31,4 +33,5 @@
       {% endfor %}
     </table>
   </form>
+</div>
 {% endblock %}

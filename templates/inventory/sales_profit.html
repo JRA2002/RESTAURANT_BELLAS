@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Django Delights{% endblock %}
+
+{% block content %}
+  <div class="d-grid gap-2 col-md-4 mx-auto">
+    <h1>VENTAS Y GANANCIAS</h1>
+  <ul>
+    <li><a href="{% url 'report' %}">REPORTES</a></li>
+    <li><a href="{% url 'best_sellers' %}">MEJORES PLATOS</a></li>
+  </ul>
+  </div>
+
+{% endblock %}

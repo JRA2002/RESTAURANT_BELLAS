@@ -20,7 +20,58 @@ from .forms import CreateOrderForm, UpdateMenuDetailsFormSet
 from .forms import TableOrderAddForm
 from .models import Basket, MenuItem, Ingredient, Recipe, Purchase, OrderNumber, Order
 from .models import TableOrder
+import reportlab
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
+import os
+import datetime
+def Profit_pdf(request):
+    # Create a file-like buffer to receive PDF data.
+    revenue = ReportView.get_queryset(request)
+    today = datetime.date.today()
+    buffer = io.BytesIO()
 
+    # Create the PDF object, using the buffer as its "file."
+    p = canvas.Canvas(buffer, pagesize=letter)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    # Ruta del logo (asegúrate de que la ruta es correcta)
+    logo_path = os.path.join('static', 'images', 'logo.png')  # Ajusta esta ruta según sea necesario
+
+    # Añadir el logo
+   
+
+    width, height = letter
+    p.drawImage(logo_path, 50, height - 100, width=100, height=100, mask='auto')
+    p.setFont("Helvetica-Bold", 20)
+    p.drawCentredString(width / 2.0, height - 50, "REPORTES")
+    
+    ganancias = 15000
+    costos = 5000
+    ganancia_neta = ganancias - costos
+
+    p.setFont("Helvetica", 12)
+    p.drawString(100, height - 100, f"Ganancias: ${ganancias}")
+    p.drawString(100, height - 120, f"Costos: ${costos}")
+    p.drawString(100, height - 140, f"Ganancia Neta: ${ganancia_neta}")
+    p.drawString(100, height - 180, f"Fecha : {str(today)}")
+
+    # Dibujar una línea para separar el contenido
+    p.setStrokeColor(colors.grey)
+    p.line(50, height - 160, width - 50, height - 160)
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    # FileResponse sets the Content-Disposition header so that browsers
+    # present the option to save the file.
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename="Profit.pdf")
 
 class SignUp(CreateView):
     form_class = UserCreationForm

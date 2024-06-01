@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Django Delights{% endblock %}
+{% block content %}
+  <div class="d-grid gap-2 col-md-4 mx-auto">
+    <h2 class="text-center mt-3">
+      PEDIDOS
+    </h2>
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Mesa</th>
+          <th>Detalles</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in object_list %}
+          <tr>
+            <td>{{ item.timestamp }}</td>
+            <td>{{ item.table_num }}</td>
+            <td><a class="btn btn-outline-primary" href="{% url 'purchases' item.id %}">VER</a></td>
+            <td><a class="btn btn-outline-danger" href="{% url 'delete_table_order' item.id %}">X</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a class="btn btn-success" href="{% url 'create_table_order' %}">AGREGAR ORDEN</a>
+    <a class="btn btn-dark" href="{% url 'home' %}">Regresar</a>
+  </div>
+{% endblock %}
