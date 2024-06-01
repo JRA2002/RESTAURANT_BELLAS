@@ -4,7 +4,7 @@
 {% block content %}
   <div class="d-grid gap-2 col-md-4 mx-auto mt-3">
     <h2>Ingredientes en Stock</h2>
-  <a href="{% url 'update_stock' %}">Editar</a>
+  
   <table>
     <thead>
       <tr>
@@ -23,5 +23,7 @@
       {% endfor %}
     </tbody>
   </table>
+  <a class="btn btn-success" href="{% url 'update_stock' %}">EDITAR</a>
+  <a class="btn btn-outline-secondary" href="{% url 'stock' %}">REGRESAR</a>
   </div>
 {% endblock %}

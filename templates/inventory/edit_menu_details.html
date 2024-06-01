@@ -2,26 +2,15 @@
 {% load static %}
 {% block title %}Django Delights{% endblock %}
 {% block content %}
-<div class="container col-md-5">
+<div class="d-grid gap-2 col-md-4 mx-auto">
 
-  <h1>{{ menu_item.title }} Receta</h1>
+  <h1>EDITAR RECETA DE {{ menu_item.title }}</h1>
 
   <form method="post">
     {% csrf_token %}
-
-    <nav aria-label="Breadcrumb" class="breadcrumb">
-      <ul>
-        <li class="breadcrumb"><a href="{% url 'menu' %}">Menu</a></li>
-        <li class="breadcrumb"><a href="{% url 'details' menu_item.title %}">{{ menu_item.title }}</a>
-        <li class="edit">
-          <div class="add">
-            <input class="addbutton" type="submit" value="Update" />
-          </div>
-        </li>
-      </ul>
-    </nav>
+    <button class="btn btn-success" type="submit">ACTUALIZAR</button>
     {{ form.management_form }}
-    <table class="menu-table">
+    <table class="table table-bordered mt-3">
       <thead class="heading">
         <tr>
           <th>Ingredient</th>
@@ -44,13 +33,19 @@
         {% endfor %}
       </tbody>
     </table>
-    <a class="add-button" href="{% url 'create_recipe' menu_item.title %}">Add Ingredient</a>
+    
   </form>
-
+</div>
+    
+<div class="d-grid gap-2 col-md-4 mx-auto">
+  <a class="btn btn-outline-success" href="{% url 'create_recipe' menu_item.title %}">AGREGAR INGREDIENTE</a>
+  <a class="btn btn-primary" href="{% url 'menu' %}">AL MENU</a>
+  <a class="btn btn-secondary" href="{% url 'details' menu_item.title %}">REGRESAR</a>
   <section>
     <h2 class="detail">Description</h2>
     <article><a href="{% url 'update_description' menu_item.title %}">{{ menu_item.description }}</a></article>
   </section>
 </div>
+  
 
 {% endblock %}

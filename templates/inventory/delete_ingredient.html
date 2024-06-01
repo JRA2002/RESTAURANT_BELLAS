@@ -1,8 +1,19 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<h2>Delete Ingredient</h2>
-<form method="post">
-  {% csrf_token %}
-  <p>Are you sure you want to delete "{{ object }}"?</p>
-  <input type="submit" value="Confirm" />
-</form>
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<div class="d-grid gap-2 col-md-4 mx-auto p-5">
+
+  <div class="card" style="width: 28rem;">
+    <div class="card-body">
+      <h2 class="card-title">Eliminar Ingrediente</h2>
+    
+      <form method="post">
+        {% csrf_token %}
+        <p>Estas seguro de eliminar "{{ object.name }}"?</p>
+        <input class="btn btn-danger" type="submit" value="CONFIRMAR" />
+        <a class="btn btn-secondary" href="{% url 'ingredients' %}">CANCELAR</a>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
