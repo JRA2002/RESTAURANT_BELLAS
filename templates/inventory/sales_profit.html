@@ -4,11 +4,11 @@
 
 {% block content %}
   <div class="d-grid gap-2 col-md-4 mx-auto">
-    <h1>VENTAS Y GANANCIAS</h1>
-  <ul>
-    <li><a href="{% url 'report' %}">REPORTES</a></li>
-    <li><a href="{% url 'best_sellers' %}">MEJORES PLATOS</a></li>
-  </ul>
+    <h1 class="text-center">REPORTES</h1>
+  <a class="btn btn-primary" href="{% url 'report' %}">REPORTE DE VENTAS</a>
+  <a class="btn btn-primary mt-3" href="{% url 'best_sellers' %}">MEJORES PLATOS</a>
+  <a class="btn btn-secondary mt-3" href="{% url 'home' %}">ATRAS</a>
+
   </div>
 
 {% endblock %}

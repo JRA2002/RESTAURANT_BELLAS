@@ -9,12 +9,32 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.urls import reverse
 
+UNIT_OF_MEASURE = [
+    ('KILO', 'KILO'),
+    ('LITRE', 'LITRE'),
+    ('GRAM', 'GRAM'),
+    ('MILLILITRE', 'MILLILITRE'),
+    ('UNIT', 'UNIT'),
+    ('OTHER', 'OTHER'),
+]
 
+class Ing_Category(models.Model):
+    name = models.CharField(unique=True, max_length=20)
+
+    def __str__(self):
+        return f'{self.name}'
 class Category(models.Model):
     category = models.CharField(unique=True, max_length=200)
 
     def __str__(self):
         return f'{self.id} -- {self.category}'
+
+class Provider(models.Model):
+    name = models.CharField(unique=True, max_length=20)
+    phone = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 # provide a list of table numbers for incorporation into customer orders
@@ -34,19 +54,23 @@ class Ingredient(models.Model):
 
     name = models.CharField(unique=True, max_length=200)
     quantity = models.PositiveIntegerField(blank=True, null=True)
-    unit = models.CharField(max_length=10)
+    category = models.ForeignKey(Ing_Category,max_length=10, blank=True, null=True, on_delete=models.CASCADE)
+    unit = models.CharField(max_length=10, choices=UNIT_OF_MEASURE)
     unit_price = models.DecimalField(
-        blank=True, null=True, max_digits=6, decimal_places=3
+        blank=True, null=True, max_digits=5, decimal_places=2
     )
-    kanban = models.BooleanField(default=False, verbose_name='Reorder')
+    reorder = models.BooleanField(default=False, verbose_name='Reorder')
     threshold = models.IntegerField(blank=True, null=True, verbose_name='Reorder Threshold')
-    re_order = models.IntegerField(blank=True, null=True, verbose_name='Reorder Quantity')
+    reorder_qty = models.IntegerField(blank=True, null=True, verbose_name='Reorder Quantity')
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default=1)
+    due_date = models.DateField(default=timezone.now)
+    status_date = models.BooleanField(default=True)
 
     # Returns reorder quantity less basket quantity
     # if kanban is true and stock is below threshold
     def buy(self):
-        if self.kanban and self.quantity < self.threshold:
-            return self.re_order - self.in_basket()
+        if self.reorder and self.quantity < self.threshold:
+            return self.reorder_qty - self.in_basket()
         else:
             return 0
 
@@ -147,14 +171,14 @@ class MenuItem(models.Model):
         # if dish is stocked then set each ingredient kanban to 'True'
         if self.stock_item == True:
             for obj in self.recipe_set.all():
-                obj.ingredient.kanban = True
+                obj.ingredient.reorder = True
                 obj.ingredient.save()
         else:
             for obj in self.recipe_set.all():
                 # if ingredient is unique in this recipe only
                 # set ingredient kanban to 'False' for unique items
                 if len(Recipe.objects.filter(ingredient=obj.ingredient)) == 1:
-                    obj.ingredient.kanban = False
+                    obj.ingredient.reorder = False
                     obj.ingredient.save()
         return self
 

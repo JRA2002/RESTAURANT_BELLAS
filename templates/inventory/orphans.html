@@ -12,6 +12,7 @@
         <th>Item</th>
         <th>Stock</th>
         <th>Unidad</th>
+        <th>Fecha de vencimiento</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
           <td>{{ item.name }}</td>
           <td>{{ item.quantity }}</td>
           <td>{{ item.unit }}</td>
+          <td>{{ item.due_date }}</td>
       {% endfor %}
     </tbody>
   </table>

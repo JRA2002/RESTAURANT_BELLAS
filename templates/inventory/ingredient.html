@@ -8,8 +8,11 @@
     <thead>
       <tr>
         <th>Item</th>
+        <th>Categoria</th>
+        <th>Proveedor</th>
         <th>Cantidad</th>
         <th>Unidad</th>
+        <th>Fecha de Vencimento</th>
       </tr>
     </thead>
     <tbody>
@@ -18,10 +21,13 @@
             <td>
               <a href="{% url 'update_ingredients' item.name %}">{{ item.name }}<a>
             </td>
+            <td>{{ item.category }}</td>
+            <td>{{item.provider}}</td>
             <td><a>{{ item.quantity }}</a></td>
             <td>
               {{ item.unit}}
             </td>
+            <td>{{ item.due_date }} </td>
             <td>
               <a class="btn btn-danger " href="{% url 'delete_ingredients' item.name %}">ELIMINAR</a>
             </td>

@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Django Delights{% endblock %}
 {% block content %}
-  <div class="d-grid gap-2 col-md-4 mx-auto mt-3">
+  <div class="d-grid gap-2 col-md-5 mx-auto mt-3">
     <h2>Ingredientes en Stock</h2>
   
   <table>
@@ -11,19 +11,24 @@
         <th>Ingrediente</th>
         <th>Cantidad</th>
         <th>Unidad</th>
+        <th>Fecha de vencimiento</th>
       </tr>
     </thead>
     <tbody>
       {% for item in object_list %}
           <tr>
             <td>{{ item.name }}</td>
+
             <td>{{ item.quantity }}</td>
             <td>{{ item.unit}}</td>
+            <td>{{ item.due_date }}</td>
           </tr>
       {% endfor %}
     </tbody>
   </table>
-  <a class="btn btn-success" href="{% url 'update_stock' %}">EDITAR</a>
-  <a class="btn btn-outline-secondary" href="{% url 'stock' %}">REGRESAR</a>
+  <div class="d-grid gap-2 col-md-5 mx-auto mt-3">
+    <a class="btn btn-success" href="{% url 'update_stock' %}">EDITAR</a>
+    <a class="btn btn-outline-secondary" href="{% url 'stock' %}">REGRESAR</a>
+  </div>
   </div>
 {% endblock %}

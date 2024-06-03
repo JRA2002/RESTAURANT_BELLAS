@@ -9,13 +9,16 @@
     <div class="add">
       <a class="addbutton" href="{% url 'menu_edit' %}">EDIT</a>
     </div>
+  {% else%}
     <h2 class="text-start">ENTRADAS</h2>
     <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Menu</th>
+          {% if user.is_staff%}
           <th scope="col">Ganancia</th>
+          {% endif %}
           <th scope="col">Precio</th>
           <th scope="col">Stock</th>
         </tr>
@@ -25,8 +28,14 @@
         {% if item.category.id == 1%}
         <tr>
           <th scope="row">{{item.id}}</th>
+          {% if user.is_staff%}
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          {% else %}
+          <td><a>{{item.title}}</a></td>
+          {% endif %}
+          {% if user.is_staff%}
           <td>{{item.dish_profit}}</td>
+          {% endif %}
           <td>{{item.price}}</td>
           <td>{{item.available}}</td>
         </tr>
@@ -40,7 +49,9 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Menu</th>
+          {% if user.is_staff%}
           <th scope="col">Ganancia</th>
+          {% endif %}
           <th scope="col">Precio</th>
           <th scope="col">Stock</th>
         </tr>
@@ -50,8 +61,14 @@
         {% if item.category.id == 2%}
         <tr>
           <th scope="row">{{item.id}}</th>
+          {% if user.is_staff%}
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          {% else %}
+          <td><a>{{item.title}}</a></td>
+          {% endif %}
+          {% if user.is_staff%}
           <td>{{item.dish_profit}}</td>
+          {% endif %}
           <td>{{item.price}}</td>
           <td>{{item.available}}</td>
         </tr>
@@ -65,7 +82,9 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Menu</th>
+          {% if user.is_staff%}
           <th scope="col">Ganancia</th>
+          {% endif %}
           <th scope="col">Precio</th>
           <th scope="col">Stock</th>
         </tr>
@@ -75,8 +94,14 @@
         {% if item.category.id == 3%}
         <tr>
           <th scope="row">{{item.id}}</th>
+          {% if user.is_staff%}
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          {% else %}
+          <td><a>{{item.title}}</a></td>
+          {% endif %}
+          {% if user.is_staff%}
           <td>{{item.dish_profit}}</td>
+          {% endif %}
           <td>{{item.price}}</td>
           <td>{{item.available}}</td>
         </tr>
@@ -100,8 +125,14 @@
         {% if item.category.id == 4%}
         <tr>
           <th scope="row">{{item.id}}</th>
+          {% if user.is_staff%}
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
+          {% else %}
+          <td><a>{{item.title}}</a></td>
+          {% endif %}
+          {% if user.is_staff%}
           <td>{{item.dish_profit}}</td>
+          {% endif %}
           <td>{{item.price}}</td>
           <td>{{item.available}}</td>
         </tr>
@@ -110,6 +141,7 @@
       </tbody>
     </table>
     {% endif %}
+    <a class="btn btn-dark" href="{% url 'home' %}">ATRAS</a>
 </div>
  
 {% endblock %}

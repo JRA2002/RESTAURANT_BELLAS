@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Basket, Category, Ingredient, MenuItem
 from .models import Purchase, Recipe, OrderNumber, Order
-from .models import Table, TableOrder
+from .models import Table, TableOrder, Provider, Ing_Category
 
 # Register your models here.
 admin.site.register(Basket)
@@ -14,3 +14,5 @@ admin.site.register(Order)
 admin.site.register(OrderNumber)
 admin.site.register(Table)
 admin.site.register(TableOrder)
+admin.site.register(Provider)
+admin.site.register(Ing_Category)

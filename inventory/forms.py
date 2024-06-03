@@ -59,7 +59,7 @@ class IngredientEditForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = [
-            'name', 'unit', 'unit_price', 'kanban', 'threshold', 're_order'
+            'name', 'unit', 'unit_price', 'reorder', 'threshold', 'reorder_qty'
         ]
 
 

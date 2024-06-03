@@ -9,7 +9,9 @@
   <a class="btn btn-outline-primary" href="{% url 'current_stock' %}">STOCK ACTUAL</a>
   <a class= "btn btn-outline-dark" href="{% url 'stocked_recipes' %}">RECETAS</a>
   <a class="btn btn-outline-dark" href="{% url 'shopping_list' %}">GENERAR LISTA DE COMPRA</a>
-  <a class="btn btn-outline-dark" href="{% url 'ingredients' %}">INGREDIENTES</a>
+  <a class="btn btn-outline-dark" href="{% url 'ingredients' %}">LISTA DE INGREDIENTES</a>
   <a class="btn btn-outline-dark" href="{% url 'orphans' %}">INGREDIENTES NO USADOS</a>
+  <a class="btn btn-outline-dark" href="#">INGREDIENTES VENCIDOS</a>
+  <a class="btn btn-dark" href="{% url 'home' %}">IR AL MENU</a>
   </div>
 {% endblock %}
