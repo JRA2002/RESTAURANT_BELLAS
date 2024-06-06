@@ -3,18 +3,19 @@
 {% block title %}Bella's Restaurant{% endblock %}
 {% block content %}
 <div class="container text-center">
-  <h1>Menu</h1>
+  <h1 class="mt-3">MENU</h1>
 
   {% if user.is_staff %}
-    <div class="add">
-      <a class="addbutton" href="{% url 'menu_edit' %}">EDIT</a>
-    </div>
-  {% else%}
-    <h2 class="text-start">ENTRADAS</h2>
+   <a class="btn btn-primary" href="{% url 'menu_edit' %}">EDITAR MENU</a>
+  {% endif %}
+  <h2 class="text-start">ENTRADAS</h2>
     <table class="table table-bordered">
       <thead>
         <tr>
+          {% if user.is_staff%}
           <th scope="col">ID</th>
+          {% endif %}
+          
           <th scope="col">Menu</th>
           {% if user.is_staff%}
           <th scope="col">Ganancia</th>
@@ -25,10 +26,10 @@
       </thead>
       <tbody>
         {% for item in object_list%}
-        {% if item.category.id == 1%}
+        {% if item.category.id == 2%}
         <tr>
-          <th scope="row">{{item.id}}</th>
           {% if user.is_staff%}
+          <th scope="row">{{item.id}}</th>
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
           {% else %}
           <td><a>{{item.title}}</a></td>
@@ -47,7 +48,9 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+          {% if user.is_staff%}
           <th scope="col">ID</th>
+          {% endif %}
           <th scope="col">Menu</th>
           {% if user.is_staff%}
           <th scope="col">Ganancia</th>
@@ -58,10 +61,10 @@
       </thead>
       <tbody>
         {% for item in object_list%}
-        {% if item.category.id == 2%}
+        {% if item.category.id == 1%}
         <tr>
-          <th scope="row">{{item.id}}</th>
           {% if user.is_staff%}
+          <th scope="row">{{item.id}}</th>
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
           {% else %}
           <td><a>{{item.title}}</a></td>
@@ -80,7 +83,9 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+          {% if user.is_staff%}
           <th scope="col">ID</th>
+          {% endif %}
           <th scope="col">Menu</th>
           {% if user.is_staff%}
           <th scope="col">Ganancia</th>
@@ -93,8 +98,8 @@
         {% for item in object_list%}
         {% if item.category.id == 3%}
         <tr>
-          <th scope="row">{{item.id}}</th>
           {% if user.is_staff%}
+          <th scope="row">{{item.id}}</th>
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
           {% else %}
           <td><a>{{item.title}}</a></td>
@@ -113,9 +118,13 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+          {% if user.is_staff%}
           <th scope="col">ID</th>
+          {% endif %}
           <th scope="col">Menu</th>
+          {% if user.is_staff%}
           <th scope="col">Ganancia</th>
+          {% endif %}
           <th scope="col">Precio</th>
           <th scope="col">Stock</th>
         </tr>
@@ -124,8 +133,8 @@
         {% for item in object_list%}
         {% if item.category.id == 4%}
         <tr>
-          <th scope="row">{{item.id}}</th>
           {% if user.is_staff%}
+          <th scope="row">{{item.id}}</th>
           <td><a href="{% url 'details' item.title %}">{{item.title}}</a></td>
           {% else %}
           <td><a>{{item.title}}</a></td>
@@ -140,7 +149,6 @@
         {% endfor %}
       </tbody>
     </table>
-    {% endif %}
     <a class="btn btn-dark" href="{% url 'home' %}">ATRAS</a>
 </div>
  

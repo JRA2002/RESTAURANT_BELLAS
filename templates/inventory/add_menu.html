@@ -9,7 +9,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     <input class="btn btn-success" type="submit" value="AGREGAR" />
-    <a class="btn btn-secondary" href="{% url 'stocked_recipes' %}">CANCELAR</a>
+    <a class="btn btn-secondary" href="{% url 'menu_edit' %}">CANCELAR</a>
   </div>
 </form>
 

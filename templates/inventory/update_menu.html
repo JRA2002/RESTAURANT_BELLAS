@@ -3,14 +3,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
   <div class="d-grid gap-2 col-md-4 mx-auto">
-    <h1>Recetas</h1>
+    <h1>Menu Items</h1>
 
   <form method="post">
     {% csrf_token %}
   
 
     {{ form.management_form }}
-    <table class="table">
+    <table class="table table">
       {% for item in form|dictsort:'instance.category.id' %}
         {{ item.id }}
         {% ifchanged %}
@@ -33,13 +33,15 @@
             <td>{{ item.instance.available }}</td>
             <td>{{ item.stock_item }}</td>
             <td>{{ item.display }}</td>
+            
           </tr>
         {% ifchanged %}</tbody>{% endifchanged %}
       {% endfor %}
     </table>
     <input class="btn btn-success mt-3" type="submit" value="ACTUALIZAR">
     <a class="btn btn-secondary mt-3" href="{% url 'create_menu' %}">AGREGAR MENU ITEM</a>
-    <a class="btn btn-outline-secondary mt-3" href="{% url 'stocked_recipes' %}">ATRAS</a>
+    <a class="btn btn-outline-secondary mt-3" href="{% url 'menu' %}">ATRAS</a>
   </form>
   </div>
+  
 {% endblock %}

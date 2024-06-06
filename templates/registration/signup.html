@@ -1,16 +1,15 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'inventory/signup.css' %}">
-<div class="signup-form">
-  <h2>Sign Up</h2>
-	<form class="signup" method="POST">
-			<div>
-				{% csrf_token %}
-				{{ form.as_p }}
-				<input type="submit" value="Signup"/>
-			</div>
-	</form>
+<div class="d-grid gap-2 col-md-4 mx-auto mt-3">
+	  <h2>REGISTRAR</h2>
+		<form class="signup" method="POST">
+				<div>
+					{% csrf_token %}
+					{{ form | crispy }}
+					<input class="btn btn-primary" type="submit" value="Resgistrar"/>
+				</div>
+		</form>
 </div>
 {% endblock %}

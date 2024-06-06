@@ -52,19 +52,19 @@ class Ingredient(models.Model):
     class Meta:
         ordering = ['name']
 
-    name = models.CharField(unique=True, max_length=200)
-    quantity = models.PositiveIntegerField(blank=True, null=True)
-    category = models.ForeignKey(Ing_Category,max_length=10, blank=True, null=True, on_delete=models.CASCADE)
+    name = models.CharField(unique=True, max_length=200, verbose_name='Nombre')
+    quantity = models.PositiveIntegerField(blank=True, null=True, verbose_name='Cantidad')
+    category = models.ForeignKey(Ing_Category,max_length=10, blank=True, null=True, on_delete=models.CASCADE, verbose_name='categoria')
     unit = models.CharField(max_length=10, choices=UNIT_OF_MEASURE)
     unit_price = models.DecimalField(
-        blank=True, null=True, max_digits=5, decimal_places=2
+        blank=True, null=True, max_digits=5, decimal_places=2, verbose_name='precio'
     )
-    reorder = models.BooleanField(default=False, verbose_name='Reorder')
-    threshold = models.IntegerField(blank=True, null=True, verbose_name='Reorder Threshold')
-    reorder_qty = models.IntegerField(blank=True, null=True, verbose_name='Reorder Quantity')
-    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default=1)
-    due_date = models.DateField(default=timezone.now)
-    status_date = models.BooleanField(default=True)
+    reorder = models.BooleanField(default=False, verbose_name='Reordenar')
+    threshold = models.IntegerField(blank=True, null=True,verbose_name='minimo a reordenar')
+    reorder_qty = models.IntegerField(blank=True, null=True, verbose_name='cantidad a reordenar')
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default=1, verbose_name='proveedor')
+    due_date = models.DateField(default=timezone.now, verbose_name='Fecha de vencimiento')
+    status_date = models.BooleanField(default=True, verbose_name='estatus')
 
     # Returns reorder quantity less basket quantity
     # if kanban is true and stock is below threshold

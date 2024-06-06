@@ -22,7 +22,7 @@ from .models import Basket, MenuItem, Ingredient, Recipe, Purchase, OrderNumber,
 from .models import TableOrder
 import reportlab
 import io
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors

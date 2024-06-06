@@ -1,16 +1,26 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'inventory/login.css' %}">
-<div class="login-form">
-  <h2>Please login</h2>
-  <form class="login" method="post">
-      <div>
-        {% csrf_token %}
-        <table>{{ form.as_table }}</table>
-      <input type="submit" value="Login"/>
-    </div>
-  </form>
+
+
+<div class="d-grid gap-2 col-md-3 mx-auto">
+  
+    <form method="post" class="form-floating">
+      <h1 class="h3 mb-3 fw-normal mt-3">Ingrese sus Datos</h1>
+      {% csrf_token %}
+      {{ form | crispy }}
+      
+  
+      <div class="form-check text-start my-3">
+        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Recuerdame
+        </label>
+      </div>
+      <input class="btn btn-primary w-100 py-2" type="submit" value="Login"/>
+    
+    </form>
+
 </div>
+
 {% endblock %}

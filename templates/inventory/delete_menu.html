@@ -6,7 +6,8 @@
     <h4 class="card-text">Esta seguro de eliminar el item "{{ object.title }}" ?</h4>
     <form method="post">
       {% csrf_token %}
-      <input class="btn btn-danger" type="submit" value="Eliminar" />
+      <input class="btn btn-danger mt-3" type="submit" value="Eliminar" />
+      <a class="btn btn-secondary mt-3" href="{% url 'details' object.title %}" >Cancelar</a>
     </form>
   </div>
 </div>
