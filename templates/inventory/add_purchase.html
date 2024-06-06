@@ -1,11 +1,16 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<h2>Add to Table {{ table_order.table_num }}</h2>
-<form method="post">
-  <div>
-    {% csrf_token %}
-    <p>Available dishes are listed</p>
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-  </div>
-</form>
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load static %} 
+{% block content %}
+<div class="d-grid gap-2 col-md-4 mx-auto">
+  <h2>Agregar a Mesa N° {{ table_order.table_num }}</h2>
+  <form method="post">
+    <div>
+      {% csrf_token %}
+      <p>Los siguientes platos estan disponibles :</p>
+      {{ form | crispy }}
+      <input class="btn btn-success" type="submit" value="Agregar" />
+    </div>
+  </form>
+</div>
 {% endblock %}

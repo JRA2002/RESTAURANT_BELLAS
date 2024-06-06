@@ -29,8 +29,24 @@ from reportlab.lib import colors
 import os
 import datetime
 def Profit_pdf(request):
+
+    purchases = Purchase.objects.all()
+    # revenue
+    total = Sum(F('menu_item__price') * F('quantity'))
+    revenue = purchases.aggregate(total=total)['total']
+    # costs
+    orders = [
+                obj.quantity * obj.menu_item.dish_cost() for obj in purchases
+            ]
+    orders_cost = sum(orders)
+            # profit
+    profit = revenue - orders_cost
+            # format for display
+    revenue = revenue.quantize(Decimal('0.01'))
+    orders_cost = orders_cost.quantize(Decimal('0.01'))
+    profit = profit.quantize(Decimal('0.01'))
+
     # Create a file-like buffer to receive PDF data.
-    revenue = ReportView.get_queryset(request)
     today = datetime.date.today()
     buffer = io.BytesIO()
 
@@ -39,25 +55,17 @@ def Profit_pdf(request):
 
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
-    # Ruta del logo (asegúrate de que la ruta es correcta)
     logo_path = os.path.join('static', 'images', 'logo.png')  # Ajusta esta ruta según sea necesario
-
-    # Añadir el logo
-   
 
     width, height = letter
     p.drawImage(logo_path, 50, height - 100, width=100, height=100, mask='auto')
     p.setFont("Helvetica-Bold", 20)
     p.drawCentredString(width / 2.0, height - 50, "REPORTES")
-    
-    ganancias = 15000
-    costos = 5000
-    ganancia_neta = ganancias - costos
 
     p.setFont("Helvetica", 12)
-    p.drawString(100, height - 100, f"Ganancias: ${ganancias}")
-    p.drawString(100, height - 120, f"Costos: ${costos}")
-    p.drawString(100, height - 140, f"Ganancia Neta: ${ganancia_neta}")
+    p.drawString(100, height - 100, f"Ganancias: S/. {revenue}")
+    p.drawString(100, height - 120, f"Costos: S/. {orders_cost}")
+    p.drawString(100, height - 140, f"Ganancia Neta: S/. {profit}")
     p.drawString(100, height - 180, f"Fecha : {str(today)}")
 
     # Dibujar una línea para separar el contenido
@@ -513,10 +521,13 @@ class ReportView(LoginRequiredMixin, ListView):
             revenue = revenue.quantize(Decimal('0.01'))
             self.orders_cost = self.orders_cost.quantize(Decimal('0.01'))
             self.profit = self.profit.quantize(Decimal('0.01'))
+            print(revenue)
+
         except:
             revenue = Decimal(0).quantize(Decimal('0.01'))
             self.orders_cost = Decimal(0).quantize(Decimal('0.01'))
             self.profit = Decimal(0).quantize(Decimal('0.01'))
+            print(revenue)
 
         return revenue
 

@@ -1,9 +1,14 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<h2>Update Purchase: Table {{ object.table_order.table_num }}</h2>
-<p>Menu Item: {{ object.menu_item }}</p>
-<form method="post">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="Update" />
-</form>
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load static %} 
+{% block content %}
+<div class="d-grid gap-2 col-md-4 mx-auto mt-3">
+  <h2>Actualizar Compra: Mesa N° {{ object.table_order.table_num }}</h2>
+  <p>Menu Item: {{ object.menu_item }}</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input class="btn btn-success" type="submit" value="Actualizar" />
+  </form>
+</div>
 {% endblock %}

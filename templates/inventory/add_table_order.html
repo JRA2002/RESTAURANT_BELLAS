@@ -1,11 +1,15 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<div class="container col-md-4">
-  <h2>Create Customer Order</h2>
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load static %} 
+{% block content %}
+<div class="d-grid gap-2 col-md-4 mx-auto mt-3">
+  <h2>Crear Nueva Orden</h2>
 <form method="post">
   <div>
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
+    {{ form|crispy }}
+    <input class="btn btn-success" type="submit" value="Crear" />
+    <a class="btn btn-secondary" href="{% url 'table_order' %}">Cancelar</a>
   </div>
 </form>
 </div>
