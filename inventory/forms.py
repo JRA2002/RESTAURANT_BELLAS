@@ -6,6 +6,7 @@ from django.forms import modelformset_factory, BaseModelFormSet
 from .models import Basket, Ingredient, MenuItem, Recipe, Purchase, OrderNumber, Order
 from .models import TableOrder
 
+
 # Add any item to basket
 class AddForm(forms.ModelForm):
     class Meta:
